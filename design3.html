@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KickZone — Sneakers & Maillots Nationaux</title>
+
+<style>
+:root{
+  --black:#070707;
+  --dark:#111111;
+  --panel:#181818;
+  --white:#ffffff;
+  --soft:#f5f5f5;
+  --muted:#777777;
+  --line:#e7e7e7;
+  --red:#e21b2d;
+  --red-dark:#b91322;
+  --green:#00a65a;
+  --gold:#f6b800;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f6f6f6;
+  color:#111;
+}
+
+button,select,input,textarea{
+  font-family:inherit;
+}
+
+button{cursor:pointer}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* TOP BAR */
+.top-strip{
+  background:#000;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  gap:45px;
+  padding:9px 20px;
+  font-size:.88rem;
+  flex-wrap:wrap;
+}
+
+.top-strip span{
+  opacity:.92;
+}
+
+/* HEADER */
+.header{
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:80;
+}
+
+.header-inner{
+  padding:18px 6%;
+  display:grid;
+  grid-template-columns:220px 1fr auto;
+  gap:28px;
+  align-items:center;
+}
+
+.logo{
+  font-size:2rem;
+  font-weight:1000;
+  letter-spacing:-1.5px;
+  font-style:italic;
+  line-height:.9;
+}
+
+.logo span{color:var(--red)}
+
+.logo small{
+  display:block;
+  font-size:.68rem;
+  letter-spacing:1.8px;
+  font-style:normal;
+  margin-top:6px;
+}
+
+.search-wrap{
+  display:flex;
+  align-items:center;
+  background:#f1f1f1;
+  border:1px solid #ddd;
+  border-radius:999px;
+  padding:0 15px;
+}
+
+.search-wrap input{
+  background:transparent;
+  border:0;
+  width:100%;
+  padding:14px 10px;
+  outline:none;
+  font-size:1rem;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  font-weight:800;
+}
+
+.icon-btn{
+  background:#111;
+  color:white;
+  border:0;
+  padding:11px 16px;
+  border-radius:999px;
+  font-weight:900;
+}
+
+/* NAV */
+.nav-menu{
+  background:#0b0b0b;
+  color:white;
+  padding:0 6%;
+  display:flex;
+  gap:38px;
+  align-items:center;
+  height:52px;
+  font-weight:900;
+  font-size:.92rem;
+}
+
+.nav-menu a{
+  opacity:.95;
+  height:52px;
+  display:flex;
+  align-items:center;
+  border-bottom:3px solid transparent;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active{
+  color:white;
+  border-bottom-color:var(--red);
+}
+
+/* HERO */
+.hero{
+  min-height:520px;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.75) 42%,rgba(0,0,0,.12) 100%),
+    url("images/hero.jpg");
+  background-size:cover;
+  background-position:center;
+  color:white;
+  display:flex;
+  align-items:center;
+  padding:70px 6%;
+}
+
+.hero-content{
+  max-width:650px;
+}
+
+.eyebrow{
+  color:var(--red);
+  font-weight:1000;
+  font-style:italic;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin-bottom:12px;
+}
+
+.hero h1{
+  font-size:clamp(3rem,7vw,6.4rem);
+  margin:0;
+  line-height:.92;
+  letter-spacing:-4px;
+  text-transform:uppercase;
+  font-weight:1000;
+}
+
+.hero h1 span{color:var(--red)}
+
+.hero p{
+  font-size:1.28rem;
+  line-height:1.55;
+  color:#eeeeee;
+  margin:25px 0 30px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:0;
+  padding:15px 22px;
+  font-weight:1000;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.btn:hover{transform:translateY(-2px)}
+
+.btn-red{background:var(--red);color:white}
+.btn-black{background:#111;color:white}
+.btn-outline{background:transparent;color:white;border:1px solid white}
+.btn-light{background:white;color:#111;border:1px solid #ddd}
+.btn-green{background:var(--green);color:white}
+
+.trust-row{
+  display:flex;
+  gap:28px;
+  margin-top:34px;
+  flex-wrap:wrap;
+}
+
+.trust{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-weight:900;
+}
+
+.trust small{
+  display:block;
+  font-weight:400;
+  color:#ccc;
+}
+
+/* FEATURE SECTION REPLACES UGLY CARDS */
+.why{
+  background:#0b0b0b;
+  color:white;
+  padding:72px 6%;
+}
+
+.why-head{
+  text-align:center;
+  max-width:850px;
+  margin:0 auto 38px;
+}
+
+.why-head .mini{
+  color:var(--red);
+  font-weight:1000;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.why-head h2{
+  font-size:clamp(2.1rem,5vw,4.3rem);
+  margin:0;
+  letter-spacing:-2px;
+  line-height:1;
+}
+
+.why-head p{
+  color:#cfcfcf;
+  font-size:1.08rem;
+  line-height:1.65;
+}
+
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.why-card{
+  background:linear-gradient(180deg,#171717,#0f0f0f);
+  border:1px solid #333;
+  border-radius:22px;
+  padding:34px 26px;
+  min-height:260px;
+  text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.28);
+}
+
+.why-icon{
+  width:82px;
+  height:82px;
+  border-radius:50%;
+  margin:0 auto 25px;
+  border:1px solid #444;
+  display:grid;
+  place-items:center;
+  font-size:2rem;
+  color:var(--red);
+  background:#1d1d1d;
+}
+
+.why-card h3{
+  font-size:1.55rem;
+  margin:0 0 12px;
+}
+
+.why-card p{
+  color:#d4d4d4;
+  line-height:1.55;
+}
+
+.why-tag{
+  margin-top:22px;
+  color:var(--red);
+  font-weight:1000;
+}
+
+/* CATALOG */
+.section{
+  padding:68px 6%;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:25px;
+  margin-bottom:28px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:2.6rem;
+  letter-spacing:-1.2px;
+}
+
+.section-head p{
+  color:var(--muted);
+  max-width:760px;
+}
+
+.category-tabs{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:28px;
+}
+
+.tab-btn{
+  background:white;
+  border:1px solid #d7d7d7;
+  padding:13px 20px;
+  border-radius:999px;
+  font-weight:1000;
+}
+
+.tab-btn.active,
+.tab-btn:hover{
+  background:#111;
+  color:white;
+}
+
+/* SHOP LAYOUT */
+.shop-layout{
+  display:grid;
+  grid-template-columns:290px 1fr;
+  gap:28px;
+}
+
+.filters{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  height:max-content;
+  position:sticky;
+  top:125px;
+}
+
+.filters h3{
+  margin:0 0 18px;
+  font-size:1.35rem;
+}
+
+.filter{
+  margin-bottom:17px;
+}
+
+.filter label{
+  display:block;
+  font-weight:1000;
+  font-size:.9rem;
+  margin-bottom:7px;
+}
+
+.filter select,
+.filter input{
+  width:100%;
+  padding:12px;
+  border:1px solid #d6d6d6;
+  border-radius:10px;
+  background:#fafafa;
+  font-size:.95rem;
+}
+
+.count{
+  color:var(--muted);
+  margin:0 0 18px;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.product{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  transition:.22s;
+  position:relative;
+}
+
+.product:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 50px rgba(0,0,0,.12);
+}
+
+.badges{
+  position:absolute;
+  z-index:2;
+  top:12px;
+  left:12px;
+  display:flex;
+  gap:6px;
+}
+
+.badge{
+  background:#111;
+  color:white;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:.72rem;
+  font-weight:1000;
+}
+
+.badge.sale{background:var(--red)}
+
+.product-img-box{
+  height:250px;
+  background:#f5f5f5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1px solid var(--line);
+}
+
+.product-img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:18px;
+  transition:.3s;
+}
+
+.product:hover .product-img{
+  transform:scale(1.06);
+}
+
+.product-body{
+  padding:18px;
+}
+
+.product-body h3{
+  margin:0 0 7px;
+  font-size:1.08rem;
+}
+
+.meta{
+  color:var(--muted);
+  line-height:1.45;
+  font-size:.92rem;
+}
+
+.rating{
+  color:#f7a600;
+  font-size:.95rem;
+  margin:10px 0;
+}
+
+.price{
+  font-size:1.32rem;
+  font-weight:1000;
+  margin:9px 0 12px;
+}
+
+.old{
+  color:#999;
+  font-size:.9rem;
+  text-decoration:line-through;
+  margin-left:8px;
+}
+
+.size-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin:12px 0 14px;
+}
+
+.size-row label{
+  font-weight:900;
+  font-size:.88rem;
+}
+
+.size-row select{
+  flex:1;
+  padding:10px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  background:#fafafa;
+}
+
+.product-actions{
+  display:flex;
+  gap:8px;
+}
+
+.product-actions button{
+  flex:1;
+}
+
+/* CART */
+.overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.55);
+  z-index:90;
+}
+
+.overlay.open{display:block}
+
+.cart-panel{
+  position:fixed;
+  right:-470px;
+  top:0;
+  height:100vh;
+  width:450px;
+  background:white;
+  z-index:100;
+  transition:.28s;
+  padding:24px;
+  overflow:auto;
+  box-shadow:-25px 0 70px rgba(0,0,0,.25);
+}
+
+.cart-panel.open{right:0}
+
+.cart-item{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.cart-item strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.qty-controls{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:8px;
+}
+
+.qty-controls button,
+.remove-btn{
+  border:0;
+  background:#eee;
+  padding:6px 10px;
+  border-radius:7px;
+  font-weight:900;
+}
+
+.remove-btn{
+  background:#ffe4e6;
+  color:#9f1239;
+}
+
+/* CHECKOUT */
+.checkout{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:28px;
+}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.step{
+  background:#f1f1f1;
+  padding:13px;
+  text-align:center;
+  border-radius:12px;
+  font-weight:1000;
+  color:#666;
+}
+
+.step.active{
+  background:#111;
+  color:white;
+}
+
+.step.done{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.form-grid input{
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:10px;
+}
+
+.confirmation{
+  background:#f0fdf4;
+  border:2px solid #22c55e;
+  border-radius:18px;
+  padding:24px;
+}
+
+.summary-box{
+  background:#fafafa;
+  border:1px solid #eee;
+  border-radius:14px;
+  padding:18px;
+  margin:18px 0;
+}
+
+/* SURVEY */
+.survey{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:26px;
+}
+
+.survey select,
+.survey textarea{
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:13px;
+}
+
+.survey textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.stars{
+  font-size:2.1rem;
+  letter-spacing:7px;
+  color:#f7a600;
+  cursor:pointer;
+  user-select:none;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%);
+  background:#111;
+  color:white;
+  padding:14px 20px;
+  border-radius:999px;
+  font-weight:900;
+  display:none;
+  z-index:200;
+}
+
+/* FOOTER */
+footer{
+  background:#080808;
+  color:white;
+  padding:36px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap;
+}
+
+footer p{
+  color:#bbb;
+  margin:5px 0 0;
+}
+
+@media(max-width:1050px){
+  .header-inner{
+    grid-template-columns:1fr;
+  }
+  .shop-layout{
+    grid-template-columns:1fr;
+  }
+  .filters{
+    position:static;
+  }
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+  .why-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:720px){
+  .top-strip{gap:12px}
+  .nav-menu{
+    overflow:auto;
+    gap:25px;
+  }
+  .hero{
+    min-height:auto;
+    padding:70px 6%;
+  }
+  .hero h1{
+    letter-spacing:-2px;
+  }
+  .product-grid{
+    grid-template-columns:1fr;
+  }
+  .steps{
+    grid-template-columns:1fr 1fr;
+  }
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+  .cart-panel{
+    width:100%;
+    right:-100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-strip">
+  <span>🚚 Livraison gratuite dès 100 $</span>
+  <span>🔥 Soldes jusqu’à -30 %</span>
+  <span>🔒 Paiement sécurisé</span>
+</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" href="#top">KICK<span>ZONE</span><small>SNEAKERS & MAILLOTS NATIONAUX</small></a>
+
+    <div class="search-wrap">
+      <span>🔎</span>
+      <input id="search" placeholder="Rechercher un produit, une équipe, une marque..." oninput="renderProducts()">
+    </div>
+
+    <div class="header-actions">
+      <span>♡ Favoris</span>
+      <span>👤 Compte</span>
+      <button class="icon-btn" onclick="toggleCart()">Panier <span id="cartCount">0</span></button>
+    </div>
+  </div>
+
+  <nav class="nav-menu">
+    <a href="#top" class="active">ACCUEIL</a>
+    <a href="#catalogue" onclick="setCategory('Sneakers')">SNEAKERS</a>
+    <a href="#catalogue" onclick="setCategory('Maillots')">MAILLOTS</a>
+    <a href="#catalogue">NOUVEAUTÉS</a>
+    <a href="#catalogue" onclick="setSale()">PROMOTIONS</a>
+    <a href="#survey">AVIS</a>
+  </nav>
+</header>
+
+<section id="top" class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Bienvenue chez</div>
+    <h1>Kick<span>Zone</span></h1>
+    <p>
+      Le meilleur des sneakers et des maillots des équipes nationales.
+      Trouvez votre style, choisissez votre taille et passez votre commande en quelques étapes simples.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="btn btn-red" onclick="setCategory('Sneakers')">Découvrir les sneakers</button>
+      <button class="btn btn-outline" onclick="setCategory('Maillots')">Découvrir les maillots</button>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust">🚚 <div>Livraison rapide<small>Partout au Canada</small></div></div>
+      <div class="trust">🛡️ <div>Paiement sécurisé<small>Processus clair</small></div></div>
+      <div class="trust">↩️ <div>Retours faciles<small>30 jours pour retourner</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="why-head">
+    <div class="mini">Pourquoi choisir KickZone ?</div>
+    <h2>Le style, la qualité et la confiance.</h2>
+    <p>
+      Cette section remplace les anciennes cartes trop simples. Elle présente KickZone comme une vraie boutique,
+      avec un ton clair, professionnel et orienté client.
+    </p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🏷️</div>
+      <h3>Offres sélectionnées</h3>
+      <p>Profitez de rabais sur des sneakers populaires et des maillots nationaux soigneusement choisis.</p>
+      <div class="why-tag">Promos limitées</div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon">✅</div>
+      <h3>Produits authentiques</h3>
+      <p>Chaque fiche produit présente clairement la marque, la taille, la couleur, le prix et la disponibilité.</p>
+      <div class="why-tag">Achat informé</div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon">🚚</div>
+      <h3>Commande simple</h3>
+      <p>Le panier et le paiement guidé montrent à l’utilisateur ce qui est fait et ce qui reste à faire.</p>
+      <div class="why-tag">Rapide & clair</div>
+    </div>
+  </div>
+</section>
+
+<section id="catalogue" class="section">
+  <div class="section-head">
+    <div>
+      <h2>Nos produits</h2>
+      <p>
+        Utilisez la recherche par facettes pour explorer les produits par catégorie, marque, équipe nationale,
+        continent, taille, couleur, prix et promotion.
+      </p>
+    </div>
+    <button class="btn btn-black" onclick="resetFilters()">Réinitialiser</button>
+  </div>
+
+  <div class="category-tabs">
+    <button class="tab-btn active" onclick="setCategory('all')">Tous</button>
+    <button class="tab-btn" onclick="setCategory('Sneakers')">Sneakers</button>
+    <button class="tab-btn" onclick="setCategory('Maillots')">Maillots nationaux</button>
+    <button class="tab-btn" onclick="setSale()">Promotions</button>
+  </div>
+
+  <div class="shop-layout">
+    <aside class="filters">
+      <h3>Filtres</h3>
+
+      <div class="filter">
+        <label>Catégorie</label>
+        <select id="category" onchange="renderProducts()">
+          <option value="all">Toutes</option>
+          <option value="Sneakers">Sneakers</option>
+          <option value="Maillots">Maillots nationaux</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label>Marque</label>
+        <select id="brand" onchange="renderProducts()">
+          <option value="all">Toutes</option>
+          <option>Nike</option>
+          <option>Adidas</option>
+          <option>Puma</option>
+          <option>New Balance</option>
+          <option>KickZone</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label>Équipe nationale</label>
+        <select id="team" onchange="renderProducts()">
+          <option value="all">Toutes</option>
+          <option>Canada</option><option>États-Unis</option><option>Mexique</option><option>Colombie</option><option>Brésil</option>
+          <option>France</option><option>Angleterre</option><option>Portugal</option><option>Espagne</option>
+          <option>Algérie</option><option>Maroc</option><option>Sénégal</option><option>Côte d'Ivoire</option><option>Congo</option><option>Tunisie</option><option>Égypte</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label>Continent</label>
+        <select id="continent" onchange="renderProducts()">
+          <option value="all">Tous</option>
+          <option>Afrique</option>
+          <option>Europe</option>
+          <option>Amérique</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label>Taille</label>
+        <select id="filterSize" onchange="renderProducts()">
+          <option value="all">Toutes</option>
+          <option>S</option><option>M</option><option>L</option><option>XL</option>
+          <option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label>Couleur</label>
+        <select id="color" onchange="renderProducts()">
+          <option value="all">Toutes</option>
+          <option>Blanc</option><option>Noir</option><option>Rouge</option><option>Bleu</option><option>Vert</option><option>Jaune</option><option>Orange</option><option>Gris</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label>Prix</label>
+        <select id="price" onchange="renderProducts()">
+          <option value="all">Tous</option>
+          <option value="low">Moins de 90 $</option>
+          <option value="mid">90 $ - 150 $</option>
+          <option value="high">Plus de 150 $</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label>Promotion</label>
+        <select id="sale" onchange="renderProducts()">
+          <option value="all">Tous</option>
+          <option value="yes">En solde seulement</option>
+        </select>
+      </div>
+    </aside>
+
+    <main>
+      <p class="count" id="resultCount"></p>
+      <div id="products" class="product-grid"></div>
+    </main>
+  </div>
+</section>
+
+<section id="checkout" class="section">
+  <div class="section-head">
+    <div>
+      <h2>Paiement guidé</h2>
+      <p>
+        Le paiement suit un processus clair : informations personnelles, livraison, paiement et confirmation.
+        L’utilisateur voit toujours l’étape actuelle et ce qui reste à faire.
+      </p>
+    </div>
+  </div>
+
+  <div class="checkout">
+    <div class="steps">
+      <div class="step active" id="step1">1. Infos</div>
+      <div class="step" id="step2">2. Livraison</div>
+      <div class="step" id="step3">3. Paiement</div>
+      <div class="step" id="step4">4. Confirmation</div>
+    </div>
+
+    <div id="checkoutContent"></div>
+  </div>
+</section>
+
+<section id="survey" class="section">
+  <div class="section-head">
+    <div>
+      <h2>Votre avis</h2>
+      <p>
+        Le sondage est placé après l’achat pour rester non intrusif. Le ton est positif et invite
+        l’utilisateur à partager son expérience.
+      </p>
+    </div>
+  </div>
+
+  <div class="survey">
+    <h3>Comment s’est passée votre visite ?</h3>
+    <p>Avez-vous trouvé facilement ce que vous cherchiez ?</p>
+    <select id="surveyEase">
+      <option>Oui, très facilement</option>
+      <option>Assez facilement</option>
+      <option>Pas vraiment</option>
+    </select>
+
+    <p>Votre note :</p>
+    <div class="stars" id="stars" onclick="setRating(event)">☆ ☆ ☆ ☆ ☆</div>
+
+    <p>Votre commentaire :</p>
+    <textarea id="comment" placeholder="Écrivez votre commentaire ici..."></textarea><br><br>
+
+    <button class="btn btn-red" onclick="submitSurvey()">Envoyer mon avis</button>
+    <p id="surveyMessage"></p>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <strong>KICKZONE</strong>
+    <p>Sneakers & maillots des équipes nationales.</p>
+  </div>
+  <div>© 2026 — conçu par Ibrahim Badiane</div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<aside class="cart-panel" id="cartPanel">
+  <h2>Votre panier</h2>
+  <div id="cartItems"></div>
+  <h3>Total : <span id="cartTotal">0 $</span></h3>
+  <button class="btn btn-red" onclick="goCheckout()">Passer au paiement</button>
+  <button class="btn btn-light" onclick="toggleCart()">Fermer</button>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+
+const products=[
+  {id:1,name:"Nike Air Force 1 '07",category:"Sneakers",brand:"Nike",team:"",continent:"",sizes:["39","40","41","42","43","44"],color:"Blanc",price:149.99,old:179.99,sale:true,badge:"NOUVEAU",rating:128,image:"image/Nike Air Force 1 '07.jpeg"},
+  {id:2,name:"Nike Dunk Low",category:"Sneakers",brand:"Nike",team:"",continent:"",sizes:["40","41","42","43","44"],color:"Noir",price:139.99,old:0,sale:false,badge:"NOUVEAU",rating:97,image:"image/Nike Dunk Low.jpeg"},
+  {id:3,name:"Nike Air Max Plus TN",category:"Sneakers",brand:"Nike",team:"",continent:"",sizes:["40","41","42","43","44"],color:"Noir",price:219.99,old:249.99,sale:true,badge:"BEST SELLER",rating:156,image:"image/Nike Air Max Plus TN.jpeg"},
+  {id:4,name:"Adidas Samba OG",category:"Sneakers",brand:"Adidas",team:"",continent:"",sizes:["39","40","41","42","43"],color:"Blanc",price:139.99,old:0,sale:false,badge:"POPULAIRE",rating:184,image:"image/Adidas Samba OG.jpeg"},
+  {id:5,name:"Adidas Gazelle",category:"Sneakers",brand:"Adidas",team:"",continent:"",sizes:["39","40","41","42","43","44"],color:"Vert",price:129.99,old:149.99,sale:true,badge:"NOUVEAU",rating:84,image:"image/Adidas Gazelle.jpeg"},
+  {id:6,name:"Adidas Campus 00s",category:"Sneakers",brand:"Adidas",team:"",continent:"",sizes:["39","40","41","42","43"],color:"Gris",price:144.99,old:0,sale:false,badge:"NOUVEAU",rating:73,image:"image/Adidas Campus 00s.jpg"},
+  {id:7,name:"Puma Palermo",category:"Sneakers",brand:"Puma",team:"",continent:"",sizes:["39","40","41","42","43"],color:"Vert",price:119.99,old:0,sale:false,badge:"NOUVEAU",rating:61,image:"image/Puma Palermo.jpeg"},
+  {id:8,name:"New Balance 550",category:"Sneakers",brand:"New Balance",team:"",continent:"",sizes:["40","41","42","43","44"],color:"Blanc",price:159.99,old:0,sale:false,badge:"CLASSIQUE",rating:102,image:"image/New Balance 550.jpeg"},
+
+  {id:9,name:"Maillot Canada",category:"Maillots",brand:"KickZone",team:"Canada",continent:"Amérique",sizes:["S","M","L","XL"],color:"Rouge",price:89.99,old:119.99,sale:true,badge:"MAILLOT",rating:91,image:"image/Maillot Canada.jpg"},
+  {id:10,name:"Maillot États-Unis",category:"Maillots",brand:"KickZone",team:"États-Unis",continent:"Amérique",sizes:["S","M","L","XL"],color:"Bleu",price:94.99,old:0,sale:false,badge:"MAILLOT",rating:76,image:"image/Maillot États-Unis.jpeg"},
+  {id:11,name:"Maillot Mexique",category:"Maillots",brand:"KickZone",team:"Mexique",continent:"Amérique",sizes:["S","M","L","XL"],color:"Vert",price:92.99,old:114.99,sale:true,badge:"PROMO",rating:88,image:"image/Maillot Mexique.jpg"},
+  {id:12,name:"Maillot Colombie",category:"Maillots",brand:"KickZone",team:"Colombie",continent:"Amérique",sizes:["S","M","L"],color:"Jaune",price:94.99,old:0,sale:false,badge:"MAILLOT",rating:64,image:"image/Maillot Colombie.jpeg"},
+  {id:13,name:"Maillot Brésil",category:"Maillots",brand:"KickZone",team:"Brésil",continent:"Amérique",sizes:["S","M","L","XL"],color:"Jaune",price:99.99,old:129.99,sale:true,badge:"BEST SELLER",rating:140,image:"image/Maillot Brésil.jpeg"},
+
+  {id:14,name:"Maillot France",category:"Maillots",brand:"KickZone",team:"France",continent:"Europe",sizes:["S","M","L","XL"],color:"Bleu",price:99.99,old:0,sale:false,badge:"MAILLOT",rating:132,image:"image/Maillot France.jpeg"},
+  {id:15,name:"Maillot Angleterre",category:"Maillots",brand:"KickZone",team:"Angleterre",continent:"Europe",sizes:["S","M","L"],color:"Blanc",price:97.99,old:124.99,sale:true,badge:"PROMO",rating:93,image:"image/Maillot Angleterre.jpeg"},
+  {id:16,name:"Maillot Portugal",category:"Maillots",brand:"KickZone",team:"Portugal",continent:"Europe",sizes:["S","M","L","XL"],color:"Rouge",price:98.99,old:0,sale:false,badge:"MAILLOT",rating:125,image:"image/Maillot Portugal.jpeg"},
+  {id:17,name:"Maillot Espagne",category:"Maillots",brand:"KickZone",team:"Espagne",continent:"Europe",sizes:["M","L","XL"],color:"Rouge",price:96.99,old:118.99,sale:true,badge:"PROMO",rating:75,image:"image/Maillot Espagne.jpeg"},
+
+  {id:18,name:"Maillot Algérie",category:"Maillots",brand:"KickZone",team:"Algérie",continent:"Afrique",sizes:["S","M","L","XL"],color:"Vert",price:89.99,old:0,sale:false,badge:"MAILLOT",rating:117,image:"image/Maillot Algérie.jpeg"},
+  {id:19,name:"Maillot Maroc",category:"Maillots",brand:"KickZone",team:"Maroc",continent:"Afrique",sizes:["S","M","L","XL"],color:"Rouge",price:93.99,old:119.99,sale:true,badge:"BEST SELLER",rating:148,image:"image/Maillot Maroc.jpeg"},
+  {id:20,name:"Maillot Sénégal",category:"Maillots",brand:"KickZone",team:"Sénégal",continent:"Afrique",sizes:["S","M","L"],color:"Vert",price:88.99,old:0,sale:false,badge:"MAILLOT",rating:65,image:"image/Maillot Sénégal.jpeg"},
+  {id:21,name:"Maillot Côte d'Ivoire",category:"Maillots",brand:"KickZone",team:"Côte d'Ivoire",continent:"Afrique",sizes:["S","M","L","XL"],color:"Orange",price:90.99,old:114.99,sale:true,badge:"PROMO",rating:82,image:"image/Maillot Côte d'Ivoire.jpeg"},
+  {id:22,name:"Maillot Congo",category:"Maillots",brand:"KickZone",team:"Congo",continent:"Afrique",sizes:["M","L","XL"],color:"Bleu",price:86.99,old:0,sale:false,badge:"MAILLOT",rating:54,image:"image/Maillot Congo.jpeg"},
+  {id:23,name:"Maillot Tunisie",category:"Maillots",brand:"KickZone",team:"Tunisie",continent:"Afrique",sizes:["S","M","L"],color:"Blanc",price:87.99,old:104.99,sale:true,badge:"PROMO",rating:69,image:"image/Maillot Tunisie'.jpeg"},
+  {id:24,name:"Maillot Égypte",category:"Maillots",brand:"KickZone",team:"Égypte",continent:"Afrique",sizes:["S","M","L","XL"],color:"Rouge",price:91.99,old:0,sale:false,badge:"MAILLOT",rating:79,image:"image/Maillot Égypte.jpeg"}
+];
+
+let cart=[];
+let checkoutStep=1;
+let rating=0;
+
+function money(n){
+  return n.toFixed(2).replace(".",",")+" $";
+}
+
+function selectedValue(id){
+  return document.getElementById(id).value;
+}
+
+function renderProducts(){
+  const search=selectedValue("search").toLowerCase();
+  const category=selectedValue("category");
+  const brand=selectedValue("brand");
+  const team=selectedValue("team");
+  const continent=selectedValue("continent");
+  const size=selectedValue("filterSize");
+  const color=selectedValue("color");
+  const price=selectedValue("price");
+  const sale=selectedValue("sale");
+
+  const filtered=products.filter(p=>{
+    const searchMatch=p.name.toLowerCase().includes(search) || p.brand.toLowerCase().includes(search) || p.team.toLowerCase().includes(search);
+    const categoryMatch=category==="all" || p.category===category;
+    const brandMatch=brand==="all" || p.brand===brand;
+    const teamMatch=team==="all" || p.team===team;
+    const continentMatch=continent==="all" || p.continent===continent;
+    const sizeMatch=size==="all" || p.sizes.includes(size);
+    const colorMatch=color==="all" || p.color===color;
+    const saleMatch=sale==="all" || p.sale;
+    let priceMatch=true;
+    if(price==="low") priceMatch=p.price<90;
+    if(price==="mid") priceMatch=p.price>=90 && p.price<=150;
+    if(price==="high") priceMatch=p.price>150;
+
+    return searchMatch && categoryMatch && brandMatch && teamMatch && continentMatch && sizeMatch && colorMatch && saleMatch && priceMatch;
+  });
+
+  document.getElementById("resultCount").innerText=filtered.length+" produit(s) trouvé(s).";
+
+  document.getElementById("products").innerHTML=filtered.map(p=>`
+    <article class="product">
+      <div class="badges">
+        <span class="badge">${p.badge}</span>
+        ${p.sale?'<span class="badge sale">PROMO</span>':''}
+      </div>
+
+      <div class="product-img-box">
+        <img class="product-img" src="${p.image}" alt="${p.name}">
+      </div>
+
+      <div class="product-body">
+        <h3>${p.name}</h3>
+        <p class="meta">${p.category} • ${p.brand}${p.team ? " • " + p.team : ""}</p>
+        <p class="meta">Couleur : ${p.color} • Stock disponible</p>
+        <div class="rating">★★★★★ <span class="meta">(${p.rating})</span></div>
+        <div class="price">${money(p.price)} ${p.old ? `<span class="old">${money(p.old)}</span>` : ""}</div>
+
+        <div class="size-row">
+          <label for="size-${p.id}">Taille</label>
+          <select id="size-${p.id}">
+            ${p.sizes.map(s=>`<option value="${s}">${s}</option>`).join("")}
+          </select>
+        </div>
+
+        <div class="product-actions">
+          <button class="btn btn-black" onclick="addToCart(${p.id})">Ajouter au panier</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function setCategory(value){
+  document.getElementById("category").value=value;
+  document.getElementById("catalogue").scrollIntoView();
+  renderProducts();
+}
+
+function setSale(){
+  document.getElementById("sale").value="yes";
+  document.getElementById("catalogue").scrollIntoView();
+  renderProducts();
+}
+
+function resetFilters(){
+  document.getElementById("search").value="";
+  ["category","brand","team","continent","filterSize","color","price","sale"].forEach(id=>{
+    document.getElementById(id).value="all";
+  });
+  renderProducts();
+}
+
+function showToast(text){
+  const toast=document.getElementById("toast");
+  toast.innerText=text;
+  toast.style.display="block";
+  setTimeout(()=>toast.style.display="none",1700);
+}
+
+function addToCart(id){
+  const product=products.find(p=>p.id===id);
+  const size=document.getElementById("size-"+id).value;
+  const key=id+"-"+size;
+  const existing=cart.find(item=>item.key===key);
+
+  if(existing){
+    existing.qty++;
+  }else{
+    cart.push({...product,size:size,qty:1,key:key});
+  }
+
+  renderCart();
+  showToast(product.name+" taille "+size+" ajouté au panier");
+}
+
+function renderCart(){
+  const count=cart.reduce((sum,item)=>sum+item.qty,0);
+  const total=cart.reduce((sum,item)=>sum+(item.price*item.qty),0);
+
+  document.getElementById("cartCount").innerText=count;
+  document.getElementById("cartTotal").innerText=money(total);
+
+  if(cart.length===0){
+    document.getElementById("cartItems").innerHTML="<p>Votre panier est vide.</p>";
+    return;
+  }
+
+  document.getElementById("cartItems").innerHTML=cart.map(item=>`
+    <div class="cart-item">
+      <div>
+        <strong>${item.name}</strong>
+        <span class="meta">Taille : ${item.size} • ${money(item.price)}</span>
+        <div class="qty-controls">
+          <button onclick="changeQty('${item.key}',-1)">-</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty('${item.key}',1)">+</button>
+        </div>
+      </div>
+      <button class="remove-btn" onclick="removeItem('${item.key}')">Supprimer</button>
+    </div>
+  `).join("");
+}
+
+function changeQty(key,amount){
+  const item=cart.find(i=>i.key===key);
+  if(!item) return;
+  item.qty+=amount;
+  if(item.qty<=0){
+    removeItem(key);
+  }else{
+    renderCart();
+  }
+}
+
+function removeItem(key){
+  cart=cart.filter(i=>i.key!==key);
+  renderCart();
+}
+
+function toggleCart(){
+  document.getElementById("cartPanel").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("open");
+}
+
+function goCheckout(){
+  document.getElementById("cartPanel").classList.remove("open");
+  document.getElementById("overlay").classList.remove("open");
+  document.getElementById("checkout").scrollIntoView();
+}
+
+function renderCheckout(){
+  document.querySelectorAll(".step").forEach((step,index)=>{
+    step.className="step";
+    if(index+1<checkoutStep) step.classList.add("done");
+    if(index+1===checkoutStep) step.classList.add("active");
+  });
+
+  const content=document.getElementById("checkoutContent");
+  const total=cart.reduce((sum,item)=>sum+item.price*item.qty,0);
+
+  if(checkoutStep===1){
+    content.innerHTML=`
+      <h3>Étape 1 : Informations personnelles</h3>
+      <p class="meta">Ce qui reste : livraison, paiement et confirmation.</p>
+      <div class="summary-box">
+        <strong>Résumé du panier :</strong> ${cart.length} article(s), total ${money(total)}
+      </div>
+      <div class="form-grid">
+        <input placeholder="Prénom">
+        <input placeholder="Nom">
+        <input placeholder="Courriel">
+        <input placeholder="Téléphone">
+      </div><br>
+      <button class="btn btn-red" onclick="nextStep()">Continuer vers la livraison</button>
+    `;
+  }
+
+  if(checkoutStep===2){
+    content.innerHTML=`
+      <h3>Étape 2 : Livraison</h3>
+      <p class="meta">Informations complétées. Ce qui reste : paiement et confirmation.</p>
+      <div class="form-grid">
+        <input placeholder="Adresse">
+        <input placeholder="Ville">
+        <input placeholder="Province">
+        <input placeholder="Code postal">
+      </div><br>
+      <button class="btn btn-light" onclick="prevStep()">Retour</button>
+      <button class="btn btn-red" onclick="nextStep()">Continuer vers le paiement</button>
+    `;
+  }
+
+  if(checkoutStep===3){
+    content.innerHTML=`
+      <h3>Étape 3 : Paiement</h3>
+      <p class="meta">Livraison complétée. Ce qui reste : confirmation.</p>
+      <div class="form-grid">
+        <input placeholder="Nom sur la carte">
+        <input placeholder="Numéro de carte">
+        <input placeholder="MM/AA">
+        <input placeholder="CVV">
+      </div><br>
+      <button class="btn btn-light" onclick="prevStep()">Retour</button>
+      <button class="btn btn-red" onclick="nextStep()">Payer maintenant</button>
+    `;
+  }
+
+  if(checkoutStep===4){
+    content.innerHTML=`
+      <div class="confirmation">
+        <h2>Commande confirmée ✅</h2>
+        <p>Merci pour votre achat chez KickZone.</p>
+        <p><strong>Numéro de commande :</strong> KZ-${Math.floor(Math.random()*90000+10000)}</p>
+        <p><strong>Total :</strong> ${money(total)}</p>
+        <p>Livraison estimée : 3 à 5 jours ouvrables.</p>
+        <button class="btn btn-green" onclick="document.getElementById('survey').scrollIntoView()">Donner mon avis</button>
+      </div>
+    `;
+  }
+}
+
+function nextStep(){
+  if(checkoutStep<4){
+    checkoutStep++;
+    renderCheckout();
+  }
+}
+
+function prevStep(){
+  if(checkoutStep>1){
+    checkoutStep--;
+    renderCheckout();
+  }
+}
+
+function setRating(event){
+  const rect=event.target.getBoundingClientRect();
+  const clickX=event.clientX-rect.left;
+  rating=Math.ceil(clickX/(rect.width/5));
+  rating=Math.max(1,Math.min(5,rating));
+  document.getElementById("stars").innerText="★ ".repeat(rating)+"☆ ".repeat(5-rating);
+}
+
+function submitSurvey(){
+  document.getElementById("surveyMessage").innerHTML=
+    "<strong>Merci !</strong> Votre avis a été envoyé. Votre opinion nous aide à améliorer l’expérience KickZone.";
+}
+
+renderProducts();
+renderCart();
+renderCheckout();
+</script>
+
+</body>
+</html>

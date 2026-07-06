@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Match Challenge</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #064e3b);
+  color: white;
+  min-height: 100vh;
+}
+
+nav {
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(12px);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero {
+  text-align: center;
+  padding: 70px 8% 35px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+.hero p {
+  color: #cbd5e1;
+  font-size: 1.2rem;
+}
+
+.game-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 24px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 14px 20px;
+  border-radius: 16px;
+}
+
+select, button {
+  padding: 13px 18px;
+  border-radius: 14px;
+  border: none;
+  font-weight: bold;
+}
+
+select { min-width: 160px; }
+
+button {
+  background: linear-gradient(135deg, #22c55e, #06b6d4);
+  color: white;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover { transform: translateY(-2px); }
+
+.grid {
+  display: grid;
+  gap: 18px;
+  justify-content: center;
+  margin: 40px auto;
+}
+
+.card {
+  height: 105px;
+  width: 105px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #1e293b, #334155);
+  color: white;
+  font-size: 2.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  transition: 0.25s;
+  user-select: none;
+}
+
+.card:hover { transform: translateY(-6px) scale(1.03); }
+
+.card.flipped {
+  background: white;
+  color: #0f172a;
+  border: 4px solid #22c55e;
+}
+
+.card.matched {
+  background: #dcfce7;
+  color: #14532d;
+  border: 4px solid #22c55e;
+  cursor: default;
+}
+
+.message {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #bbf7d0;
+}
+
+footer {
+  text-align: center;
+  color: #cbd5e1;
+  padding: 30px;
+}
+
+@media(max-width: 800px) {
+  .hero h1 { font-size: 2.5rem; }
+
+  .grid { gap: 10px; }
+
+  .card {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+    border-radius: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Ibrahima.</a>
+  <span>SEG3525 • Jeu de mémoire</span>
+</nav>
+
+<header class="hero">
+  <h1>Memory Match Challenge</h1>
+  <p>Retourne les cartes, mémorise leur position et trouve toutes les paires.</p>
+</header>
+
+<main class="game-container">
+
+  <section class="panel">
+    <div>
+      <label for="level"><strong>Niveau</strong></label><br>
+      <select id="level" onchange="startGame()">
+        <option value="easy">Facile — 4 x 4</option>
+        <option value="medium">Moyen — 5 x 4</option>
+        <option value="hard">Difficile — 6 x 4</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="theme"><strong>Thème</strong></label><br>
+      <select id="theme" onchange="startGame()">
+        <option value="animaux">Animaux</option>
+        <option value="sport">Sport</option>
+        <option value="pays">Pays</option>
+      </select>
+    </div>
+
+    <div class="stat">
+      Coups : <strong id="moves">0</strong>
+    </div>
+
+    <div class="stat">
+      Paires trouvées : <strong id="pairs">0</strong>
+    </div>
+
+    <button onclick="startGame()">Recommencer</button>
+  </section>
+
+  <section class="grid" id="gameBoard"></section>
+
+  <div class="message" id="message"></div>
+
+</main>
+
+<footer>
+  © 2026 Memory Match Challenge — conçu par Ibrahim Badiane
+</footer>
+
+<script>
+const themes = {
+  animaux: ["🐶","🐱","🐼","🐸","🐵","🦁","🐰","🐨","🐯","🦊","🐮","🐷"],
+  sport: ["⚽","🏀","🏈","🎾","🏐","⚾","🥊","🏓","⛳","🏸","🏒","🏉"],
+  pays: ["🇨🇦","🇫🇷","🇩🇿","🇸🇳","🇨🇮","🇺🇸","🇲🇦","🇪🇬","🇪🇸","🇨🇩","🇵🇹","🇹🇳"]
+};
+
+let cards = [];
+let flipped = [];
+let moves = 0;
+let matchedPairs = 0;
+let totalPairs = 0;
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function startGame() {
+  const level = document.getElementById("level").value;
+  const theme = document.getElementById("theme").value;
+
+  let pairCount;
+  let columns;
+
+  if (level === "easy") {
+    pairCount = 8;
+    columns = 4;
+  } else if (level === "medium") {
+    pairCount = 10;
+    columns = 5;
+  } else {
+    pairCount = 12;
+    columns = 6;
+  }
+
+  const selectedItems = themes[theme].slice(0, pairCount);
+
+  moves = 0;
+  matchedPairs = 0;
+  totalPairs = selectedItems.length;
+  flipped = [];
+
+  document.getElementById("moves").innerText = moves;
+  document.getElementById("pairs").innerText = matchedPairs;
+  document.getElementById("message").innerHTML = "";
+
+  cards = shuffle([...selectedItems, ...selectedItems]);
+
+  const board = document.getElementById("gameBoard");
+  board.innerHTML = "";
+  board.style.gridTemplateColumns = `repeat(${columns}, 105px)`;
+
+  cards.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerText = "?";
+    card.onclick = () => flipCard(card, index);
+    board.appendChild(card);
+  });
+}
+
+function flipCard(card, index) {
+  if (flipped.length === 2) return;
+  if (card.classList.contains("flipped")) return;
+  if (card.classList.contains("matched")) return;
+
+  card.innerText = cards[index];
+  card.classList.add("flipped");
+  flipped.push({ card, index });
+
+  if (flipped.length === 2) {
+    moves++;
+    document.getElementById("moves").innerText = moves;
+
+    const first = flipped[0];
+    const second = flipped[1];
+
+    if (cards[first.index] === cards[second.index]) {
+      first.card.classList.add("matched");
+      second.card.classList.add("matched");
+
+      matchedPairs++;
+      document.getElementById("pairs").innerText = matchedPairs;
+
+      flipped = [];
+
+      if (matchedPairs === totalPairs) {
+        document.getElementById("message").innerHTML = `
+          <div style="
+            background: rgba(34,197,94,0.22);
+            border: 2px solid #22c55e;
+            padding: 28px;
+            border-radius: 22px;
+            max-width: 650px;
+            margin: 25px auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+          ">
+            <h2>🎉 Félicitations ! 🎉</h2>
+            <p>Vous avez trouvé toutes les paires.</p>
+            <p><strong>Nombre de coups :</strong> ${moves}</p>
+            <p>Bravo! Vous avez bien utilisé votre mémoire visuelle.</p>
+          </div>
+        `;
+      }
+    } else {
+      setTimeout(() => {
+        first.card.innerText = "?";
+        second.card.innerText = "?";
+        first.card.classList.remove("flipped");
+        second.card.classList.remove("flipped");
+        flipped = [];
+      }, 850);
+    }
+  }
+}
+
+startGame();
+</script>
+
+</body>
+</html>

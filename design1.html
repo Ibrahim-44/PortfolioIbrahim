@@ -1,0 +1,275 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VéloRépare Ottawa</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+    }
+
+    .hero {
+      min-height: 90vh;
+      background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)),
+      url("https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1600");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 90px 8%;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #cbd5e1;
+      font-size: 1.2rem;
+    }
+
+    .section {
+      padding: 70px 8%;
+    }
+
+    .dark {
+      background: #0f172a;
+      color: white;
+    }
+
+    .card-service {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      height: 100%;
+    }
+
+    .price {
+      color: #16a34a;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .info-box {
+      background: #e0f2fe;
+      border-left: 6px solid #0284c7;
+      padding: 20px;
+      border-radius: 14px;
+    }
+
+    form {
+      background: white;
+      color: #1e293b;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 650px;
+    }
+
+    .confirmation {
+      background: #dcfce7;
+      color: #14532d;
+      padding: 25px;
+      border-radius: 18px;
+      margin-top: 25px;
+      max-width: 650px;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+function App() {
+
+  const [service, setService] = React.useState("");
+  const [date, setDate] = React.useState("");
+  const [tech, setTech] = React.useState("");
+  const [confirmed, setConfirmed] = React.useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if(service === "" || date === "" || tech === "") {
+      alert("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    setConfirmed(true);
+  }
+
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div className="container">
+          <a className="navbar-brand fw-bold" href="index.html">Ibrahima.</a>
+        </div>
+      </nav>
+
+      <header className="hero">
+        <div>
+          <p>Atelier de réparation de vélos à Ottawa</p>
+
+          <h1>Experts en réparation de vélos à Ottawa</h1>
+
+          <p>
+            Chez VéloRépare Ottawa, nous sommes spécialisés dans la réparation,
+            l’entretien et l’ajustement de vélos. Passez nous voir avec ou sans
+            rendez-vous pour un service rapide, professionnel et fiable.
+          </p>
+
+          <a href="#reservation" className="btn btn-success btn-lg mt-3">
+            Réserver une réparation
+          </a>
+        </div>
+      </header>
+
+      <section id="services" className="section">
+        <h2 className="fw-bold mb-4">Nos services</h2>
+
+        <div className="row g-4">
+
+          <div className="col-md-3">
+            <div className="card-service">
+              <h4>Réparation de crevaison</h4>
+              <p>Réparation ou remplacement de chambre à air.</p>
+              <div className="price">25 $</div>
+            </div>
+          </div>
+
+          <div className="col-md-3">
+            <div className="card-service">
+              <h4>Ajustement des freins</h4>
+              <p>Réglage complet pour plus de sécurité.</p>
+              <div className="price">35 $</div>
+            </div>
+          </div>
+
+          <div className="col-md-3">
+            <div className="card-service">
+              <h4>Mise au point</h4>
+              <p>Inspection générale du vélo.</p>
+              <div className="price">79 $</div>
+            </div>
+          </div>
+
+          <div className="col-md-3">
+            <div className="card-service">
+              <h4>Réglage des vitesses</h4>
+              <p>Ajustement du dérailleur.</p>
+              <div className="price">40 $</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="reservation" className="section dark">
+
+        <h2>Réserver un rendez-vous</h2>
+
+        <form onSubmit={handleSubmit}>
+
+          <label className="form-label">Service</label>
+          <select
+            className="form-select mb-3"
+            value={service}
+            onChange={(e)=>setService(e.target.value)}
+          >
+            <option value="">-- Sélectionner --</option>
+            <option>Réparation de crevaison</option>
+            <option>Ajustement des freins</option>
+            <option>Mise au point complète</option>
+            <option>Réglage des vitesses</option>
+          </select>
+
+          <label className="form-label">Date</label>
+          <input
+            className="form-control mb-3"
+            type="date"
+            value={date}
+            onChange={(e)=>setDate(e.target.value)}
+          />
+
+          <label className="form-label">Technicien</label>
+          <select
+            className="form-select mb-3"
+            value={tech}
+            onChange={(e)=>setTech(e.target.value)}
+          >
+            <option value="">-- Sélectionner --</option>
+            <option>Fatima</option>
+            <option>Mohammed Amine</option>
+          </select>
+
+          <button className="btn btn-success w-100">
+            Confirmer
+          </button>
+
+        </form>
+
+        {confirmed &&
+          <div className="confirmation">
+            <h4>Rendez-vous confirmé</h4>
+            <p>Service : {service}</p>
+            <p>Date : {date}</p>
+            <p>Technicien : {tech}</p>
+          </div>
+        }
+
+      </section>
+
+      <section id="infos" className="section">
+
+        <h2 className="fw-bold mb-4">
+          Informations importantes
+        </h2>
+
+        <div className="info-box">
+          <p><strong>Adresse :</strong> 120 rue Bank, Ottawa, ON</p>
+          <p><strong>Téléphone :</strong> 613-555-2026</p>
+          <p><strong>Courriel :</strong> contact@velorepareottawa.ca</p>
+          <p><strong>Heures :</strong> Lundi à samedi, 9h à 18h</p>
+          <p><strong>Sans rendez-vous</strong></p>
+        </div>
+
+      </section>
+
+      <footer>
+        © 2026 VéloRépare Ottawa
+      </footer>
+
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+</script>
+
+</body>
+</html>
+```
